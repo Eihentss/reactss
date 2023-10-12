@@ -42,44 +42,22 @@ const tasks = [
 
 function App() {
   const [taskStatus, setTaskStatus] = useState({});
-
-  function handleTaskStatusChange(taskId, completed) {
-    setTaskStatus((prevStatus) => ({
-      ...prevStatus,
-      [taskId]: completed,
-    }));
-  }
-
   return (
     <div className="App">
       <h1>Uzdevumu saraksts</h1>
-      <ul>
         {tasks.map((task) => (
-          <li key={task.id}>
+          <div key={task.id}>
+           <div className="tuks"> <img src="user.png" width="22" height="22"></img> 
+              <p className="tasksss">{task.id}</p>
+            </div>
             <label>
-              <input
-                type="radio"
-                name={`task-${task.id}`}
-                value="completed"
-                checked={taskStatus[task.id] === true}
-                onChange={() => handleTaskStatusChange(task.id, true)}
-              />
-              Pabeigts
-            </label>
-            <label>
-              <input
-                type="radio"
-                name={`task-${task.id}`}
-                value="not-completed"
-                checked={taskStatus[task.id] === false}
-                onChange={() => handleTaskStatusChange(task.id, false)}
-              />
-              Nav pabeigts
+              <input type="checkbox" className="aplis" />
+              <span></span>
             </label>
             {task.title}
-          </li>
+          </div>
         ))}
-      </ul>
+
     </div>
   );
 }

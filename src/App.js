@@ -42,6 +42,14 @@ const tasks = [
 
 function App() {
   const [taskStatus, setTaskStatus] = useState({});
+
+  const handleCheckboxChange = (taskId) => {
+    setTaskStatus((prevTaskStatus) => ({
+      ...prevTaskStatus,
+      [taskId]: !prevTaskStatus[taskId],
+    }));
+  };
+  
   return (
     <div className="App">
       <h1>Uzdevumu saraksts</h1>
@@ -51,7 +59,13 @@ function App() {
               <p className="tasksss">{task.id}</p>
             </div>
             <label>
-              <input type="checkbox" className="aplis" />
+            <input
+              type="checkbox"
+              className="aplis"
+              checked={taskStatus[task.id] = task.completed}
+              //checked={taskStatus[task.id] || task.completed}
+              onChange={() => handleCheckboxChange(task.id)}
+            />
               <span></span>
             </label>
             {task.title}
